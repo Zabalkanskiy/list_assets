@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
       child: Builder(
         builder: (context) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'List Assets',
             theme: ThemeData(
               primarySwatch: Colors.blue,
