@@ -1,10 +1,24 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:list_assets/core/data/assets.dart';
+import 'package:list_assets/core/util/format.dart';
 
 class CryptoItem extends StatelessWidget {
   final Datum asset;
+  final Color containerColor;
 
-  const CryptoItem({super.key, required this.asset});
+   CryptoItem({super.key, required this.asset}) : containerColor = _generateRandomColor();
+
+  static Color _generateRandomColor() {
+    final random = Random();
+    return Color.fromRGBO(
+      random.nextInt(256), // Red: 0-255
+      random.nextInt(256), // Green: 0-255
+      random.nextInt(256), // Blue: 0-255
+      1.0, // Opacity
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +33,7 @@ class CryptoItem extends StatelessWidget {
             height: 56,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: Colors.grey[300],
-            ),
-            child: Center(
-              child: Text(
-                asset.symbol,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              color: containerColor,
             ),
           ),
           const SizedBox(width: 16),
@@ -36,20 +41,22 @@ class CryptoItem extends StatelessWidget {
           // Название валюты
           Expanded(
             child: Text(
-              asset.name,
+              asset.symbol,
               style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+                fontSize: 17,
+                fontFamily: 'SF Pro Text',
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
 
           // Стоимость
           Text(
-            '\$${double.parse(asset.priceUsd).toStringAsFixed(2)}',
+            formatCurrency(asset.priceUsd),
             style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+              fontSize: 17,
+              fontFamily: 'SF Pro Text',
+              fontWeight: FontWeight.w600
             ),
           ),
         ],

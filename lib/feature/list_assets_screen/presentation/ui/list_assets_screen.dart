@@ -43,9 +43,6 @@ class _ListAssertsScreenState extends State<ListAssetsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Crypto List'),
-      ),
       body: BlocBuilder<ListAssetsBloc, ListAssetsState>(
         builder: (context, state) {
           if (state is CryptoInitial) {
