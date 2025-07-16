@@ -16,21 +16,22 @@ class Assets {
   Map<String, dynamic> toJson() => _$AssetsToJson(this);
 }
 
+///переписал часть на nullable типы так как иногда не все поля от апишки приходят
 @JsonSerializable()
 class Datum {
   final String id;
   final String rank;
   final String symbol;
   final String name;
-  final String supply;
-  final String maxSupply;
-  final String marketCapUsd;
-  final String volumeUsd24Hr;
+  final String? supply;
+  final String? maxSupply;
+  final String? marketCapUsd;
+  final String? volumeUsd24Hr;
   final String priceUsd;
-  final String changePercent24Hr;
-  final String vwap24Hr;
-  final String explorer;
-  final Map<String, List<String>> tokens;
+  final String? changePercent24Hr;
+  final String? vwap24Hr;
+  final String? explorer;
+  final Map<String, List<String>>? tokens;
 
   Datum({
     required this.id,
