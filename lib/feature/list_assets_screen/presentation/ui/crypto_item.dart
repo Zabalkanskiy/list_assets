@@ -2,23 +2,16 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:list_assets/core/data/assets.dart';
+import 'package:list_assets/core/data/crypto_asset.dart';
 import 'package:list_assets/core/util/format.dart';
 
 class CryptoItem extends StatelessWidget {
-  final Datum asset;
-  final Color containerColor;
+  final CryptoAsset asset;
 
-   CryptoItem({super.key, required this.asset}) : containerColor = _generateRandomColor();
 
-  static Color _generateRandomColor() {
-    final random = Random();
-    return Color.fromRGBO(
-      random.nextInt(256), // Red: 0-255
-      random.nextInt(256), // Green: 0-255
-      random.nextInt(256), // Blue: 0-255
-      1.0, // Opacity
-    );
-  }
+   CryptoItem({super.key, required this.asset});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +26,7 @@ class CryptoItem extends StatelessWidget {
             height: 56,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: containerColor,
+              color: asset.color,
             ),
           ),
           const SizedBox(width: 16),
@@ -41,7 +34,7 @@ class CryptoItem extends StatelessWidget {
           // Название валюты
           Expanded(
             child: Text(
-              asset.symbol,
+              asset.datum.symbol,
               style: const TextStyle(
                 fontSize: 17,
                 fontFamily: 'SF Pro Text',
@@ -52,7 +45,7 @@ class CryptoItem extends StatelessWidget {
 
           // Стоимость
           Text(
-            formatCurrency(asset.priceUsd),
+            asset.formattedPrice,
             style: const TextStyle(
               fontSize: 17,
               fontFamily: 'SF Pro Text',

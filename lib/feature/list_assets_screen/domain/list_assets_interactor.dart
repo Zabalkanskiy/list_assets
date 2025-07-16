@@ -1,5 +1,6 @@
 import 'package:list_assets/core/data/assets.dart';
+import 'package:list_assets/core/data/crypto_asset.dart';
 
 abstract class ListAssetsInteractor {
-  Future<List<Datum>> getListDatum({int limit = 15, int offset = 0});
+  Future<List<CryptoAsset>> getListAssets({int limit = 15, int offset = 0});
 }

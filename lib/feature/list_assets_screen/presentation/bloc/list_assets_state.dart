@@ -12,7 +12,7 @@ class CryptoInitial extends ListAssetsState {}
 class CryptoLoading extends ListAssetsState {}
 
 class CryptoLoaded extends ListAssetsState {
-  final List<Datum> assets;
+  final List<CryptoAsset> assets;
   final bool hasReachedMax;
 
   const CryptoLoaded({

@@ -18,7 +18,6 @@ class _ListAssertsScreenState extends State<ListAssetsScreen> {
   void initState() {
     super.initState();
     _scrollController.addListener(_onScroll);
-    context.read<ListAssetsBloc>().add(LoadCryptoEvent());
   }
 
   @override

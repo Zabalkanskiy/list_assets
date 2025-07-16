@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:list_assets/core/api/create_dio.dart';
 import 'package:list_assets/core/api/crypto_api.dart';
 import 'package:list_assets/core/data/assets.dart';
 
@@ -9,26 +10,10 @@ class ListAssetsRepositoryImpl implements ListAssetsRepository {
 
   final CryptoApi _api;
 
-  ListAssetsRepositoryImpl() : _api = CryptoApi(_createDio());
+  ListAssetsRepositoryImpl() : _api = CryptoApi(CreateDio.createDio());
   @override
   Future<Assets> getAssets({int limit = 15, int offset = 0}) async {
     return _api.getAssets(apiKey: _apiKey, limit: limit,  offset:  offset);
   }
 
-  static Dio _createDio() {
-    return Dio(BaseOptions(
-      connectTimeout: const Duration(seconds: 15),
-      receiveTimeout: const Duration(seconds: 15),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-    ))
-      ..interceptors.add(LogInterceptor(
-        request: true,
-        responseBody: true,
-        requestBody: true,
-        requestHeader: true,
-      ));
-  }
 }
