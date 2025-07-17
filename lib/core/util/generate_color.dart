@@ -10,7 +10,7 @@ class GenerateColor {
      _random.nextInt(256),
      _random.nextInt(256),
      _random.nextInt(256),
-     1.0,
+     .1,
    );
  }
 
