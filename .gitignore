@@ -45,3 +45,4 @@ app.*.map.json
 /android/app/release
 /lib/core/data/assets.g.dart
 /lib/core/api/crypto_api.g.dart
+/lib/core/di/injection.config.dart

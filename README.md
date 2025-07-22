@@ -10,7 +10,7 @@ Built with Flutter
 - intl (internationalization)
 - json_annotation (JSON serialization)
 - equatable (object comparison)
-- provider (dependency injection)
+- get_it (dependency injection)
 
 ## Features
 - Infinite data loading
@@ -33,7 +33,7 @@ Built with Flutter
 - intl (интернационализация)
 - json_annotation (сериализация JSON)
 - equatable (сравнение объектов)
-- provider (DI)
+- get_it (DI)
 
 
 
