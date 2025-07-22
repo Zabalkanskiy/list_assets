@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:list_assets/core/data/assets.dart';
 import 'package:retrofit/retrofit.dart';
 

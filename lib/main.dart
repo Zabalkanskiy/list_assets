@@ -1,11 +1,19 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:list_assets/core/di/injection.dart';
 import 'package:list_assets/feature/list_assets_screen/data/list_assets_repository_impl.dart';
 import 'package:list_assets/feature/list_assets_screen/domain/list_assets_interactor_impl.dart';
 import 'package:list_assets/feature/list_assets_screen/presentation/bloc/list_assets_bloc.dart';
 import 'package:list_assets/feature/list_assets_screen/presentation/ui/list_assets_screen.dart';
 
-void main() {
+final getIt = GetIt.instance;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // регистрируем все зависимости
+  configureDependencies(getIt);
   runApp(const MyApp());
 }
 
@@ -17,9 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        RepositoryProvider(lazy: false, create: (context) => ListAssetsRepositoryImpl()),
-        RepositoryProvider(lazy: false, create: (context) => ListAssetsInteractorImpl(listAssetsRepository: context.read<ListAssetsRepositoryImpl>())),
-        RepositoryProvider(create: (context) => ListAssetsBloc(listAssetsInteractor: context.read<ListAssetsInteractorImpl>())..add(LoadCryptoEvent())),
+        BlocProvider(create: (_) => getIt<ListAssetsBloc>()..add(LoadCryptoEvent())),
       ],
       child: Builder(
         builder: (context) {

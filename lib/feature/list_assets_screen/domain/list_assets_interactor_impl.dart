@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:list_assets/core/data/assets.dart';
 import 'package:list_assets/core/data/crypto_asset.dart';
 import 'package:list_assets/core/util/format.dart';
@@ -6,6 +7,7 @@ import 'package:list_assets/feature/list_assets_screen/data/list_assets_reposito
 
 import 'list_assets_interactor.dart';
 
+@Injectable(as: ListAssetsInteractor)
 class ListAssetsInteractorImpl implements ListAssetsInteractor {
   ListAssetsRepository listAssetsRepository;
 

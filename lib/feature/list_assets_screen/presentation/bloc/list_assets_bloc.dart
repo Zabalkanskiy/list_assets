@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:list_assets/core/data/assets.dart';
 import 'package:list_assets/core/data/crypto_asset.dart';
 import 'package:list_assets/feature/list_assets_screen/domain/list_assets_interactor.dart';
@@ -7,6 +8,7 @@ import 'package:equatable/equatable.dart';
 part 'list_assets_event.dart';
 part 'list_assets_state.dart';
 
+@injectable
 class ListAssetsBloc extends Bloc<ListAssetsEvent, ListAssetsState> {
   ListAssetsInteractor listAssetsInteractor;
   final int _pageSize = 15;
