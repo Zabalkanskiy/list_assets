@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:list_assets/core/data/assets.dart';
 import 'package:list_assets/feature/list_assets_screen/data/list_assets_repository_impl.dart';
 import 'package:mocktail/mocktail.dart';
-import 'mocks.dart';
+import '../../mocks.dart';
 
 void main() {
   late MockCryptoApi api;

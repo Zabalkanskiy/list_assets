@@ -6,7 +6,7 @@ import 'package:list_assets/core/data/assets.dart';
 import 'package:list_assets/core/util/format.dart';
 import 'package:list_assets/core/util/generate_color.dart';
 import 'package:mocktail/mocktail.dart';
-import 'mocks.dart';
+import '../../../mocks.dart';
 
 void main() {
   late MockInteractor mockInteractor;
