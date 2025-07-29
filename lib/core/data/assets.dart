@@ -5,6 +5,7 @@ part 'assets.g.dart';
 @JsonSerializable()
 class Assets {
   final int timestamp;
+  @JsonKey(toJson: _dataToJson, fromJson: _dataFromJson)
   final List<Datum> data;
 
   Assets({
@@ -14,6 +15,14 @@ class Assets {
 
   factory Assets.fromJson(Map<String, dynamic> json) => _$AssetsFromJson(json);
   Map<String, dynamic> toJson() => _$AssetsToJson(this);
+
+  // Добавляем статические функции для конвертации
+  static List<Map<String, dynamic>> _dataToJson(List<Datum> data) {
+    return data.map((e) => e.toJson()).toList();
+  }
+  static List<Datum> _dataFromJson(List<dynamic> data) {
+    return data.map((e) => Datum.fromJson(e as Map<String, dynamic>)).toList();
+  }
 }
 
 ///переписал часть на nullable типы так как иногда не все поля от апишки приходят
@@ -38,18 +47,18 @@ class Datum {
     required this.rank,
     required this.symbol,
     required this.name,
-    required this.supply,
-    required this.maxSupply,
-    required this.marketCapUsd,
-    required this.volumeUsd24Hr,
     required this.priceUsd,
-    required this.changePercent24Hr,
-    required this.vwap24Hr,
-    required this.explorer,
-    required this.tokens,
+    this.supply,
+    this.maxSupply,
+    this.marketCapUsd,
+    this.volumeUsd24Hr,
+    this.changePercent24Hr,
+    this.vwap24Hr,
+    this.explorer,
+    this.tokens,
   });
 
   factory Datum.fromJson(Map<String, dynamic> json) => _$DatumFromJson(json);
-  Map<String, dynamic> toJson() => _$DatumToJson(this);
 
+  Map<String, dynamic> toJson() => _$DatumToJson(this);
 }
