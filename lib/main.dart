@@ -1,10 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:list_assets/core/di/injection.dart';
-import 'package:list_assets/feature/list_assets_screen/data/list_assets_repository_impl.dart';
-import 'package:list_assets/feature/list_assets_screen/domain/list_assets_interactor_impl.dart';
 import 'package:list_assets/feature/list_assets_screen/presentation/bloc/list_assets_bloc.dart';
 import 'package:list_assets/feature/list_assets_screen/presentation/ui/list_assets_screen.dart';
 
@@ -25,22 +22,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => getIt<ListAssetsBloc>()..add(LoadCryptoEvent())),
+        BlocProvider(
+            create: (_) => getIt<ListAssetsBloc>()..add(LoadCryptoEvent())),
       ],
-      child: Builder(
-        builder: (context) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'List Assets',
-            theme: ThemeData(
-              primarySwatch: Colors.blue,
-              useMaterial3: true,
-            ),
-            home: const ListAssetsScreen(),
-          );
-        }
-      ),
+      child: Builder(builder: (context) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'List Assets',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            useMaterial3: true,
+          ),
+          home: const ListAssetsScreen(),
+        );
+      }),
     );
   }
 }
-

@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:list_assets/core/data/assets.dart';
 import 'package:list_assets/core/data/crypto_asset.dart';
 import 'package:list_assets/feature/list_assets_screen/domain/list_assets_interactor.dart';
 import 'package:equatable/equatable.dart';
@@ -14,18 +13,20 @@ class ListAssetsBloc extends Bloc<ListAssetsEvent, ListAssetsState> {
   final int _pageSize = 15;
   int _currentOffset = 0;
 
-  ListAssetsBloc({required this.listAssetsInteractor}) : super(CryptoInitial()) {
+  ListAssetsBloc({required this.listAssetsInteractor})
+      : super(CryptoInitial()) {
     on<LoadCryptoEvent>(_onLoadCrypto);
     on<LoadMoreCryptoEvent>(_onLoadMoreCrypto);
   }
 
   Future<void> _onLoadCrypto(
-      LoadCryptoEvent event,
-      Emitter<ListAssetsState> emit,
-      ) async {
+    LoadCryptoEvent event,
+    Emitter<ListAssetsState> emit,
+  ) async {
     emit(CryptoLoading());
     try {
-      List<CryptoAsset> listDatum = await listAssetsInteractor.getListAssets(limit: _pageSize);
+      List<CryptoAsset> listDatum =
+          await listAssetsInteractor.getListAssets(limit: _pageSize);
       _currentOffset = _pageSize;
       emit(CryptoLoaded(
         assets: listDatum,
@@ -37,9 +38,9 @@ class ListAssetsBloc extends Bloc<ListAssetsEvent, ListAssetsState> {
   }
 
   Future<void> _onLoadMoreCrypto(
-      LoadMoreCryptoEvent event,
-      Emitter<ListAssetsState> emit,
-      ) async {
+    LoadMoreCryptoEvent event,
+    Emitter<ListAssetsState> emit,
+  ) async {
     if (state is CryptoLoaded) {
       final currentState = state as CryptoLoaded;
       if (currentState.hasReachedMax) return;
@@ -60,5 +61,4 @@ class ListAssetsBloc extends Bloc<ListAssetsEvent, ListAssetsState> {
       }
     }
   }
-
 }

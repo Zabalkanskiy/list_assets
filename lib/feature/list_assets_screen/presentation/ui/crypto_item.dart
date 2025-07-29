@@ -1,17 +1,10 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:list_assets/core/data/assets.dart';
 import 'package:list_assets/core/data/crypto_asset.dart';
-import 'package:list_assets/core/util/format.dart';
 
 class CryptoItem extends StatelessWidget {
   final CryptoAsset asset;
 
-
-   CryptoItem({super.key, required this.asset});
-
-
+  CryptoItem({super.key, required this.asset});
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +40,9 @@ class CryptoItem extends StatelessWidget {
           Text(
             asset.formattedPrice,
             style: const TextStyle(
-              fontSize: 17,
-              fontFamily: 'SF Pro Text',
-              fontWeight: FontWeight.w600
-            ),
+                fontSize: 17,
+                fontFamily: 'SF Pro Text',
+                fontWeight: FontWeight.w600),
           ),
         ],
       ),
